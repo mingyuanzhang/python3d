@@ -1,5 +1,10 @@
 # python3d
 
+The repo contains many adhoc scripts for generating stl models for 3d printing. Much of the code is written by chatGPT, with me getting the geometry correct for my purpose. Many of the models are published at thingiverse: 
+https://www.thingiverse.com/flowingdust/designs
+
+(Obviously the code is very disorganized, but once I have enough usage patterns I will clean it up and make it more reusable.)
+
 You will need to install some libraries.
 
 > pip install trimesh
