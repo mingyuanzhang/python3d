@@ -3,6 +3,7 @@ from trimesh.creation import box
 from solid import text, linear_extrude, scad_render
 import os
 import subprocess
+import numpy as np
 
 
 def text_3d_mesh(text_geom, text_height):
@@ -71,6 +72,26 @@ def curve_mesh_onto_cylinder(mesh, radius):
         new_z = radius * np.cos(angle) + z*0.5
 
         # Set the new vertex position
+        vertex[2] = new_z
+    
+    return mesh
+
+
+def curve_mesh_onto_cylinder_along_z(mesh, radius):
+    mesh = center_mesh(mesh)
+    for vertex in mesh.vertices:
+        # Get the original x, y, z coordinates
+        x, y, z = vertex
+
+        # Convert x (linear distance) to an angular displacement around the cylinder
+        angle = x / radius
+
+        # Map the flat vertex onto the curved surface
+        new_x = radius * np.sin(angle) 
+        new_z = radius * np.cos(angle) + z*0.5
+
+        # Set the new vertex position
+        vertex[0] = new_x
         vertex[2] = new_z
     
     return mesh
