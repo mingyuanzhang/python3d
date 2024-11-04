@@ -30,6 +30,7 @@ def create_plain_threaded_cap(inner_radius=inch_to_mm(1.5), thread_height=5, wal
     top_cap = top_cap.apply_translation([0, 0, wall_thickness/2])
 
     threads = create_threaded_cylinder(inner_radius, thread_height, 1.5, 2)
+    threads = flip_z(threads)
     threads = threads.apply_translation([0, 0, wall_thickness])
 
     cap = trimesh.boolean.union([top_cap, threads])
@@ -114,5 +115,5 @@ if __name__ == "__main__":
 
     bottom.export("~/Downloads/snack_box_bottom.stl")
     cap.export("~/Downloads/snack_box_cap.stl")
-    
+
 
